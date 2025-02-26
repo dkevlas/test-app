@@ -1,0 +1,84 @@
+<form
+    [formGroup]="myForm"
+    [attr.autocomplete]="'on'"
+    class="max-w-sm mx-auto bg-zinc-900 py-8 px-4 mt-4 rounded-lg shadow-lg"
+>
+    <h3 class="text-zinc-200 font-semibold text-2xl text-center mb-4" >Registrarse</h3>
+    
+    <div class="mb-5">
+        <label for="name" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">Nombre</label>
+        <input
+          formControlName="name"
+          type="name"
+          id="name"
+          class="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-zinc-500 focus:border-zinc-500 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-zinc-500 dark:focus:border-zinc-500"
+          placeholder="nombre"
+          required
+          autocomplete="name"
+        />
+        @if(verifyField('name')){
+          <span class="text-red-500">
+              {{messageError('name')}}
+          </span>
+        }
+
+    </div>
+
+    <div class="mb-5">
+      <label for="email" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">Correo</label>
+      <input
+        formControlName="email"
+        type="email"
+        id="email"
+        class="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-zinc-500 focus:border-zinc-500 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-zinc-500 dark:focus:border-zinc-500"
+        placeholder="correo@email.com"
+        required
+        autocomplete="email"
+      />
+      @if(verifyField('email')){
+        <span class="text-red-500">
+            {{messageError('email')}}
+        </span>
+      } @else if (messageErrorApi?.success === false) {
+        <span class="text-red-500">
+            {{messageErrorApi?.path == 'email' ? messageErrorApi?.message : '' }}
+        </span>
+      }
+    </div>
+
+    <div class="mb-5">
+      <label for="password" class="block mb-2 text-sm font-medium text-zinc-900 dark:text-white">Contraseña</label>
+      <input
+        formControlName="password"
+        type="password"
+        id="password"
+        class="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-zinc-500 focus:border-zinc-500 block w-full p-2.5 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-zinc-500 dark:focus:border-zinc-500"
+        required
+        placeholder="contraseña"
+        autocomplete="current-password"
+      />
+      @if(verifyField('password')){
+        <span class="text-red-500">
+            {{messageError('password')}}
+        </span>
+      }
+    </div>
+
+    <div class="flex justify-between">
+      <button
+        (click)="submit()"
+        type="button"
+        class="text-white bg-zinc-700 hover:bg-zinc-800 focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-lg text-sm w-max sm:w-auto px-5 py-2.5 text-center dark:bg-zinc-600 dark:hover:bg-zinc-700 dark:focus:ring-zinc-800"
+      >
+        Registrarse
+      </button>
+      <div class="flex flex-col text-end">
+        <p class="text-zinc-500">¿Tienes una cuenta?</p>
+        <a class="font-bold text-zinc-300 underline" routerLink="/login" >Iniciar Sesión </a>
+      </div>
+    </div>
+</form>
+
+@if (true) {
+  <app-modal (closeModal)="closeModal()" [message]="messageModal" [registerSuccess]="openModal" ></app-modal>
+}

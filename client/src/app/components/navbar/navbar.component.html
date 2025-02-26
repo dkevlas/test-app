@@ -1,0 +1,14 @@
+<nav class="bg-zinc-800 p-4 flex justify-between items-center max-w-7xl mx-auto">
+    
+    <div class="text-white font-bold text-lg">
+      <span class="cursor-pointer select-none" (click)="goHome()" >LOGO</span>
+    </div>
+  
+    <button
+        (click)="isAuth?.success ? logout() : goLogin()"
+        class="bg-zinc-600 text-white px-4 py-2 rounded-lg hover:bg-zinc-500 focus:outline-none"
+    >
+      {{messageAction}}
+    </button>
+</nav>
+  

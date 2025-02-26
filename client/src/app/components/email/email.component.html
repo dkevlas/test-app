@@ -1,0 +1,50 @@
+@if (openModal) {
+    <div class="fixed inset-0 bg-zinc-900 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full sm:w-96">
+          <h2 class="text-center text-xl font-semibold text-zinc-900">Ingresa tu correo</h2>
+          
+            <form class="mt-4" [formGroup]="myForm">
+                <div class="mb-4">
+                    <label for="email" class="block text-zinc-700">Correo Electrónico</label>
+                    <input
+                        formControlName="email"
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        class="w-full p-2 mt-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-500"
+                        placeholder="tu-correo@dominio.com"
+                    />
+                    @if(verifyEmail('email')) {
+                        <span class="text-red-500">
+                            {{messageError('email') || messageErrorApi}}
+                        </span>
+                    } @else if (typeof messageErrorApi === 'string') {
+                        <span class="text-red-500">
+                            {{messageErrorApi}}
+                        </span>
+                    }
+                </div>
+        
+                <div class="flex justify-between">
+                    <button
+                        (click)="cancel()"
+                        type="button"
+                        class="bg-zinc-300 px-4 py-2 rounded-md text-zinc-900 hover:bg-zinc-400"
+                    >
+                        Cancelar
+                    </button>
+                    
+                    <button
+                        (click)="sendEmail()"
+                        type="button"
+                        class="bg-zinc-600 text-white px-4 py-2 rounded-md hover:bg-zinc-700"
+                    >
+                        Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+  

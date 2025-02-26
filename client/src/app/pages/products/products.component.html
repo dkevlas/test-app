@@ -1,0 +1,14 @@
+<section
+    class="flex flex-wrap justify-center gap-4 max-w-6xl mt-8 mx-auto px-2"
+>
+    @for (item of productsAll; track $index) {
+        <app-product
+            [isAuth]="autenticated?.success"
+            [img]="item.imagen"
+            [title]="item.titulo"
+            [price]="item.precio.toFixed(2)"
+            [idProduct]="item._id"
+            [description]="item.descripcion"
+        ></app-product>
+    }    
+</section>
